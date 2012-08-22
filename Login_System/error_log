@@ -1,0 +1,3 @@
+[01-Apr-2009 16:35:17] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Login_System/main.php on line 125
+[01-Apr-2009 17:26:37] PHP Parse error:  syntax error, unexpected T_IF, expecting ',' or ';' in /home/dogodea1/public_html/Login_System/main.php on line 103
+[01-Apr-2009 17:54:51] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Login_System/remove.php on line 117

@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+  <title>Boston Deals - Restaurant Login</title>
+      <script src="http://maps.google.com/maps?file=api&v=2&key=ABQIAAAAlpQu-IPydOADYfNJbuhihhRf1EURBc1HStnkED4XDw9Qqm7fhhR8WiPOZHrLLNDx6kvOH8gMtnYt0g" type="text/javascript"></script>
+  
+  <script src="cookies.js" type="text/javascript"></script>
+  <script type="text/javascript">
+function setCookie(c_name,value,expiredays)
+{
+var exdate=new Date();
+exdate.setDate(exdate.getDate()+expiredays);
+document.cookie=c_name+ "=" +escape(value)+
+((expiredays==null) ? "" : ";expires="+exdate.toGMTString());
+}
+
+function getCookie(c_name)
+{
+if (document.cookie.length>0)
+  {
+  c_start=document.cookie.indexOf(c_name + "=");
+  if (c_start!=-1)
+    { 
+    c_start=c_start + c_name.length+1; 
+    c_end=document.cookie.indexOf(";",c_start);
+    if (c_end==-1) c_end=document.cookie.length;
+    return unescape(document.cookie.substring(c_start,c_end));
+    } 
+  }
+return "";
+}
+
+function checkCookie()
+{
+username=getCookie('username');
+if (username!=null && username!="")
+{
+alert('Welcome again '+username+'!');
+}
+else 
+{
+username=prompt('Please enter your name:',"");
+if (username!=null && username!="")
+{
+setCookie('username',username,365);
+} 
+}
+}
+
+  function login() {
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+	var params = "username=" + username + "&password=" + password;
+    var url = "goog_loginuser.php?username=" + username + "&password=" + password;
+//document.write("Fuck you");
+ GDownloadUrl(url, function(data, responseCode) {
+      if (data.length > 1) {
+//document.write(data);        
+setCookie("session", data, 5);
+//document.write(data);
+//document.getElementById("message").innerHTML = "Login Successful." + 
+  //  "<a href='goog_addlocation.html'>Proceed to Add a location</a>.";
+document.write("<a href='goog_addlocation.html'>Login Successful. Proceed</a>");
+  
+    } else {
+    	//document.write(data);
+        document.getElementById("message").innerHTML = "Error. Try again.";
+      }
+    });
+  }
+
+  </script>
+
+  </head>
+  <body>
+
+  <h1>Login for Community Map</h1>
+
+ Username: <input type="text" id="username">
+ Password:<input type="password" id="password">
+  <input type="button" onclick="login()" value="Login">
+  <div id="message"></div>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+[31-Mar-2009 13:34:03] PHP Parse error:  syntax error, unexpected ',' in /home/dogodea1/public_html/phpsqlsearch_genxml.php on line 43
+[31-Mar-2009 13:34:47] PHP Parse error:  syntax error, unexpected ',' in /home/dogodea1/public_html/phpsqlsearch_genxml.php on line 43
+[31-Mar-2009 13:35:05] PHP Parse error:  syntax error, unexpected ',' in /home/dogodea1/public_html/phpsqlsearch_genxml.php on line 43
+[31-Mar-2009 13:35:24] PHP Parse error:  syntax error, unexpected ',' in /home/dogodea1/public_html/phpsqlsearch_genxml.php on line 43
+[31-Mar-2009 13:35:25] PHP Parse error:  syntax error, unexpected ',' in /home/dogodea1/public_html/phpsqlsearch_genxml.php on line 43
+[31-Mar-2009 13:35:43] PHP Parse error:  syntax error, unexpected ',' in /home/dogodea1/public_html/phpsqlsearch_genxml.php on line 43
+[31-Mar-2009 13:36:16] PHP Parse error:  syntax error, unexpected ',' in /home/dogodea1/public_html/phpsqlsearch_genxml.php on line 43
+[31-Mar-2009 13:36:18] PHP Parse error:  syntax error, unexpected ',' in /home/dogodea1/public_html/phpsqlsearch_genxml.php on line 43
+[31-Mar-2009 13:36:21] PHP Parse error:  syntax error, unexpected ',' in /home/dogodea1/public_html/phpsqlsearch_genxml.php on line 43
+[31-Mar-2009 13:36:22] PHP Parse error:  syntax error, unexpected ',' in /home/dogodea1/public_html/phpsqlsearch_genxml.php on line 43
+[31-Mar-2009 13:41:52] PHP Parse error:  syntax error, unexpected ',' in /home/dogodea1/public_html/phpsqlsearch_genxml.php on line 43
+[31-Mar-2009 13:42:01] PHP Parse error:  syntax error, unexpected ',' in /home/dogodea1/public_html/phpsqlsearch_genxml.php on line 43
+[31-Mar-2009 13:42:02] PHP Parse error:  syntax error, unexpected ',' in /home/dogodea1/public_html/phpsqlsearch_genxml.php on line 43
+[08-Sep-2011 16:55:10] PHP Parse error:  syntax error, unexpected T_STRING in /home/dogodea1/public_html/raptest.php on line 10
+[08-Sep-2011 16:56:13] PHP Parse error:  syntax error, unexpected T_STRING in /home/dogodea1/public_html/raptest.php on line 10
+[08-Sep-2011 16:56:45] PHP Parse error:  syntax error, unexpected T_STRING in /home/dogodea1/public_html/raptest.php on line 10
+[08-Sep-2011 16:56:51] PHP Parse error:  syntax error, unexpected T_STRING in /home/dogodea1/public_html/raptest.php on line 20
+[08-Sep-2011 16:56:52] PHP Parse error:  syntax error, unexpected T_STRING in /home/dogodea1/public_html/raptest.php on line 20
+[08-Sep-2011 17:19:23] PHP Warning:  require_once(rapleaf_personlib.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /home/dogodea1/public_html/rapleaf_main.php on line 23
+[08-Sep-2011 17:19:23] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required 'rapleaf_personlib.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/dogodea1/public_html/rapleaf_main.php on line 23
+[08-Sep-2011 17:19:30] PHP Warning:  require_once(rapleaf_personlib.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /home/dogodea1/public_html/rapleaf_main.php on line 23
+[08-Sep-2011 17:19:30] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required 'rapleaf_personlib.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/dogodea1/public_html/rapleaf_main.php on line 23
+[08-Sep-2011 17:35:08] PHP Parse error:  syntax error, unexpected T_STRING in /home/dogodea1/public_html/rapleaftest.php on line 3
+[08-Sep-2011 17:35:37] PHP Parse error:  syntax error, unexpected T_STRING in /home/dogodea1/public_html/RapleafApi.php on line 18
+[08-Sep-2011 17:57:45] PHP Parse error:  syntax error, unexpected T_STRING in /home/dogodea1/public_html/rapleaftest.php on line 3
+[08-Sep-2011 17:57:48] PHP Parse error:  syntax error, unexpected T_STRING in /home/dogodea1/public_html/rapleaftest.php on line 3
+[08-Sep-2011 17:57:57] PHP Parse error:  syntax error, unexpected T_STRING in /home/dogodea1/public_html/rapleaftest.php on line 3
+[08-Sep-2011 17:59:14] PHP Parse error:  syntax error, unexpected T_STRING in /home/dogodea1/public_html/rapleaftest.php on line 2
+[08-Sep-2011 17:59:18] PHP Parse error:  syntax error, unexpected T_STRING in /home/dogodea1/public_html/rapleaftest.php on line 2
+[08-Sep-2011 17:59:44] PHP Parse error:  syntax error, unexpected T_STRING in /home/dogodea1/public_html/RapleafApi.php on line 18
+[12-Sep-2011 14:16:02] PHP Parse error:  syntax error, unexpected T_STRING in /home/dogodea1/public_html/RapleafApi.php on line 18

@@ -1,0 +1,273 @@
+<html><head><title>Do Go Deals - Home</title>
+    <meta name="description" content="Do Go Deals - Allston, MA. GPS events/specials/deals. Restaurants">
+    <meta name="keywords" content="Do Go Deals, Restaurants, Allston, MA">
+    <link rel="Home" href="http://www.dogodeals.com/index.html" title="Home">
+    <link rel="First" href="http://dogodeals.com/index.html" title="Home">
+    <link rel="Last" href="mailto:contact_us@dogodeals.com" title="Contact Us">
+    <link rel="Next" href="add.html" title="Add Form">
+    <script type="text/javascript" src="http://dogodeals.vpweb.com/vp/js-lib/customersites/common/vp.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://dogodeals.vpweb.com/vp/css/customersites/common_published.css">
+    <style>a.userlink {
+      font-family: Verdana; color: #B3D335; font-size: 13px; font-style: normal; font-weight: normal; 
+      }
+      a.userlink:visited {
+      font-family: Verdana; color: #FFFFFF; font-size: 13px; font-style: normal; font-weight: normal; 
+      }
+      a.userlink:hover {
+      font-family: Verdana; color: #EE4D9B; font-size: 13px; font-style: normal; font-weight: normal; 
+      }
+      font[size="1"] { font-size:10px; }
+      font[size="2"] { font-size:13px; }
+      font[size="3"] { font-size:16px; }
+      font[size="4"] { font-size:18px; }
+      font[size="5"] { font-size:24px; }
+      font[size="6"] { font-size:32px; }
+      font[size="7"] { font-size:48px; }
+      </style>
+    <!--[if IE]>
+    <style>
+      ul
+      {
+          margin-left:1.5em;
+          padding-left:0;
+      }
+      ol
+      {
+          margin-left:2em;
+          padding-left:0;
+      }
+      @media print
+      {
+          img.userContentCellBackground { display: none; }
+      }
+      </style>
+    <![endif]--></head>
+	 <script src="http://maps.google.com/maps?file=api&v=2&key=ABQIAAAAGroKzMDAOLW_ewmTRNc1fBS2VAnPP1hW_vHnyD0DbvSS6AimCBSnumu0UO7Klw5m-5CeuBTRZv_NNA"
+	            type="text/javascript"></script>
+
+	    <script type="text/javascript">
+	    var map;
+	    var geocoder;
+
+	    function load() { 
+	  if (GBrowserIsCompatible()) {
+	        geocoder = new GClientGeocoder();
+	        map = new GMap2(document.getElementById('map'));
+	        map.addControl(new GLargeMapControl());
+	        map.addControl(new GMapTypeControl());
+	        map.setCenter(new GLatLng(42.3589200, -71.0578100), 13);
+	//		map.setUIToDefault();
+			map.zoomIn(15);
+			}
+	    }
+		function drawDow() {
+		//var weekday = new Array();
+		var weekdayt = new getDay_l();
+
+	//	var weekdayv = new Array();
+		var weekdayv = new getDay_ab();
+		var d = new Date();
+		var dees = d.getDay();
+
+
+			var combLay = document.getElementById('dow');
+			var buffet = "<b>Day: </b><select id='daySelect'>";
+
+
+			for (var i=0; i<7; i++)
+			{
+				if (i==dees) {
+					buffet += "<option value="+'"'+ weekdayv[i] + '" selected>'+ weekdayt[i] + '</option>';
+					}
+					else
+						buffet += "<option value="+'"'+ weekdayv[i] + '">'+ weekdayt[i] + '</option>';
+			}
+	buffet += '</select>';
+	document.getElementById('dow').innerHTML = buffet;
+		}
+	   function searchLocations() {
+	     var address = document.getElementById('addressInput').value; 
+geocoder.getLatLng(address, function(latlng) {
+	       if (!latlng) {
+	         alert(address + ' not retrievable');
+	       } else {
+	         searchLocationsNear(latlng);
+	       }
+	     });
+	   }
+
+	   function searchLocationsNear(center) {
+	     
+var radius = document.getElementById('radiusSelect').value;
+
+		var day = document.getElementById('daySelect').value;
+
+	     var searchUrl = 'phpsqlsearch_genxml.php?lat=' + center.lat() + '&lng=' + center.lng() + '&radius=' + radius + '&day=' + day;
+  GDownloadUrl(searchUrl, function(data) {
+	       var xml = GXml.parse(data);
+	       var markers = xml.documentElement.getElementsByTagName('marker');
+	       map.clearOverlays();
+
+	       var sidebar = document.getElementById('sidebar');
+	       sidebar.innerHTML = '';
+	       if (markers.length == 0) {
+	         sidebar.innerHTML = 'No results found.';
+	         map.setCenter(new GLatLng(40, -100), 4);
+	         return;
+	       }
+	       var bounds = new GLatLngBounds();
+	       for (var i = 0; i < markers.length; i++) {
+	         var name = markers[i].getAttribute('Restaurant_Name');
+	         var address = markers[i].getAttribute('Restaurant_Address');
+			 var rcat = markers[i].getAttribute('Restaurant_Category');
+			 var rdesc = markers[i].getAttribute('Restaurant_Description');
+			 var rphone = markers[i].getAttribute('Restaurant_Phone');
+			 var dow =  markers[i].getAttribute('Event_Day');
+			var etype = markers[i].getAttribute('Event_Type');
+			var estart = markers[i].getAttribute('Event_Start');
+			var eend = markers[i].getAttribute('Event_End');
+			var ecat = markers[i].getAttribute('Event_Category');
+			var distance = parseFloat(markers[i].getAttribute('Distance'));
+	         var point = new GLatLng(parseFloat(markers[i].getAttribute('latitude')),
+	                                 parseFloat(markers[i].getAttribute('longitude')));
+
+	         var marker = createMarker(point, name, address, etype, dow, rdesc, rphone);
+	         map.addOverlay(marker);
+	         var sidebarEntry = createSidebarEntry(marker, name, address, distance, dow, etype, estart, eend);
+	         sidebar.appendChild(sidebarEntry);
+	         bounds.extend(point);
+	       }
+	       map.setCenter(bounds.getCenter(), map.getBoundsZoomLevel(bounds));
+	     });
+	   }
+
+	    function createMarker(point, name, address, etype, dow, rdesc, rphone) {
+	      var marker = new GMarker(point);
+	      var html = '<b>' + name + '</b> <br/>' + address + '<br/>' + etype + " - " + dow + '<br/>' + rdesc + '<br/>' + "Phone: " + rphone;
+	      GEvent.addListener(marker, 'click', function() {
+	        marker.openInfoWindowHtml(html, {maxWidth:350});
+	      });
+	      return marker;
+	    }
+
+	    function createSidebarEntry(marker, name, address, distance, dow, etype, estart, eend) {
+	      var div = document.createElement('div');
+	      var html = '<b>' + name + '</b> (' + distance.toFixed(1) + ')<br/>' + address + '<br/>' + dow + ' - ' + etype + '<br/> ' + estart + '-' + eend;
+	      div.innerHTML = html;
+	      div.style.cursor = 'pointer';
+	      div.style.marginBottom = '5px'; 
+	      GEvent.addDomListener(div, 'click', function() {
+	        GEvent.trigger(marker, 'click');
+	      });
+	      GEvent.addDomListener(div, 'mouseover', function() {
+	        div.style.backgroundColor = '#0033CC';
+	      });
+	      GEvent.addDomListener(div, 'mouseout', function() {
+	        div.style.backgroundColor = '#999999';
+	      });
+	      return div;
+		  
+	    }
+	    //]]>
+	function getDay_ab() { 
+		var d=new Date();
+		var weekdayv=new Array(7);
+		weekdayv[0]="Sun";
+		weekdayv[1]="Mon";
+		weekdayv[2]="Tue";
+		weekdayv[3]="Wed";
+		weekdayv[4]="Thu";
+		weekdayv[5]="Fri";
+		weekdayv[6]="Sat";
+	//	document.write(weekday[d.getDay()]);
+		return weekdayv;
+	}
+	function getDay_l() { 
+		var d=new Date();
+		var weekday=new Array(7);
+		weekday[0]="Sunday";
+		weekday[1]="Monday";
+		weekday[2]="Tuesday";
+		weekday[3]="Wednesday";
+		weekday[4]="Thursday";
+		weekday[5]="Friday";
+		weekday[6]="Saturday";
+	return weekday;
+	//	document.write(weekday[dater.getDay()]);
+	}
+	  </script>
+	
+  <body onLoad="drawDow();load();" onUnload="GUnload();" style="font-family: Verdana; color: #0D0D0D; font-size: 13px; font-style: normal; font-weight: normal; ;background-color: #321b12;background-image: url(http://dogodeals.vpweb.com/siteback.png?u=633715869371875000)">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td align="left">
+<div style="position:relative; text-align:left; width:776px;">
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr height="183">
+<td colspan="3"><a href="index.html"><img src="http://dogodeals.vpweb.com/bg-1.png?u=633715869371875000" alt="Do Go Deals - location based promos|deals|specials" galleryimg="no" width="776" height="183" /></a></td>
+</tr>
+<tr id="midrow" height="467">
+<td valign="top" width="196" background="http://dogodeals.vpweb.com/bg-3a.png?u=633715869371875000">
+<div style="position: relative; z-index: 21; width:196px"><img src="http://dogodeals.vpweb.com/bg-2a.png?u=633715869371875000" galleryimg="no" style="position: absolute; top: 0px; left: 0px; z-index: -2" width="196" height="373" /><a href="index.html"><img src="http://dogodeals.vpweb.com/nav-0-S.png?u=633715869371875000" galleryimg="no" style="border: none; position: absolute; left: 16px; top: -6px; width: 148px; height: 25px; z-index: 25;" width="148" height="25" /></a> <a href="/Login_System/main.php"><img src="http://dogodeals.vpweb.com/nav-1-I.png?u=633716046024178750" galleryimg="no" onMouseOver="this.src = 'http://dogodeals.vpweb.com/nav-1-H.png?u=633716046024178750';" onMouseOut="this.src = 'http://dogodeals.vpweb.com/nav-1-I.png?u=633716046024178750';" style="border: none; position: absolute; left: 16px; top: 28px; width: 148px; height: 25px; z-index: 25;" width="148" height="25" /></a> <a href="mailto:contact_us@dogodeals.com"><img src="http://dogodeals.vpweb.com/nav-2-I.png?u=633715869371875000" galleryimg="no" onMouseOver="this.src = 'http://dogodeals.vpweb.com/nav-2-H.png?u=633715869371875000';" onMouseOut="this.src = 'http://dogodeals.vpweb.com/nav-2-I.png?u=633715869371875000';" style="border: none; position: absolute; left: 16px; top: 62px; width: 148px; height: 25px; z-index: 25;" width="148" height="25" /></a></div>
+</td>
+<td class="userContentCell" valign="top" width="536" background="http://dogodeals.vpweb.com/bg-3b.png?u=633715869371875000">
+<div style="position: relative; z-index: 20; width:776px"><img src="http://dogodeals.vpweb.com/bg-2b.png?u=633715869371875000" galleryimg="no" class="userContentCellBackground" style="position: absolute; top: 0px; left: 0px; z-index: -2" width="786" height="373" /> 
+<table id="tabcolumn-1" style="width: 100%; margin-bottom: 15px" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<div id="column-1" usermodifiable="true" style="font-family: Verdana;font-size: 13px;color: #0D0D0D;font-weight: normal;font-style: normal;width: 100%">
+<div id="ctrl-36940621"><span style="color: #b3d335; font-family: Times New Roman; font-size: large;"><b></b></span><br /></div>
+<div id="ctrl-36940624"><span style="color: #b3d335; font-family: Times New Roman; font-size: large;"><b></b></span></div>
+<div id="addressInut" style="display:inline"><b>Address:
+</b><input id="addressInput" type="text" /></div>
+<div id="dow" style="display:inline"></div>
+<div id="radiusect" style="display:inline"><b>Miles: </b><select id="radiusSelect"> <option value="1">1</option> <option value="2">2</option> <option value="5" selected>5</option> <option value="10">10</option> <option value="25">25</option> <option value="100">100</option></select></div>
+<!-- 	Day of Week: <select id="daySelect"> <option value=getDay_ab() selected> <option value="M">Monday</option> <option value="Tu">Tuesday</option> <option value="W">Wednesday</option> <option value="Th">Thursday</option> <option value="F">Friday</option> <option value="Sa">Saturday</option> <option value="Su">Sunday</option> </select> !-->
+					    <input onClick="searchLocations()" value="Search For Deals!" type="button" /> <br /> <br />
+<div style="width:750px; font-family:Arial, 
+					sans-serif; font-size:11px; border:1px solid black">
+<table>
+</table>
+<table border="1">
+<tbody>
+<tr id="cm_mapTR">
+<td valign="top" width="200">
+<div id="sidebar" style="overflow: auto; height: 400px; font-size: 11px; color: #000"></div>
+</td>
+<td>
+<div id="map" style="overflow: hidden; width:580px; height:450px; font-size: 12px;"></div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+<td valign="top" width="44" background="http://dogodeals.vpweb.com/bg-3c.png?u=633715869371875000">
+<div style="position: relative; z-index: 19; width:44px"><img src="http://dogodeals.vpweb.com/bg-2c.png?u=633715869371875000" galleryimg="no" style="position: absolute; top: 0px; left: 0px; z-index: -2" width="44" height="373" /></div>
+</td>
+</tr>
+<!-- 
+<tr height="67">
+<td colspan="3">
+<div style="position: relative;" mce_style="position: relative;"><img src="http://dogodeals.vpweb.com/bg-4a.png?u=633715869371875000" mce_src="http://dogodeals.vpweb.com/bg-4a.png?u=633715869371875000" width="196" height="94" galleryimg="no" style="position: absolute; top: -94px; left: 0px" mce_style="position: absolute; top: -94px; left: 0px"><img src="http://dogodeals.vpweb.com/bg-4b.png?u=633715869371875000" mce_src="http://dogodeals.vpweb.com/bg-4b.png?u=633715869371875000" width="536" height="94" galleryimg="no" style="position: absolute; top: -94px; left: 196px" mce_style="position: absolute; top: -94px; left: 196px"><img src="http://dogodeals.vpweb.com/bg-4c.png?u=633715869371875000" mce_src="http://dogodeals.vpweb.com/bg-4c.png?u=633715869371875000" width="44" height="94" galleryimg="no" style="position: absolute; top: -94px; left: 732px" mce_style="position: absolute; top: -94px; left: 732px"><img src="http://dogodeals.vpweb.com/bg-5.png?u=633715869371875000" mce_src="http://dogodeals.vpweb.com/bg-5.png?u=633715869371875000" width="776" height="67" galleryimg="no"></div>
+</td>
+</tr>
+!-->
+</tbody>
+</table>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</body>
+  </html>

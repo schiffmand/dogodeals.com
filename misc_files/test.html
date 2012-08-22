@@ -1,0 +1,28 @@
+<html>
+This form will retrieve event and event details for the given location <br /><br />
+<form action="phpsqlsearch_genxml.php" method="get">
+	Latitude: <input type="text" name="lat" />
+	Longitude: <input type="text" name="lng" />
+<!-- 	Miles from Location: <input type="text" name="miles" /> -->
+Within   
+<select name="radius">
+<option value="1">1 Mile</option>
+<option value="2">2 Miles</option>
+<option value="5">5 Miles</option>
+<option value="10">10 Miles</option>
+<option value="10">300 Miles</option>
+</select>
+
+	Day: <select name="day">
+      <option value="M" selected>Monday</option>
+      <option value="Tu">Tuesday</option>
+      <option value="W">Wednesday</option>
+      <option value="Th">Thursday</option>
+      <option value="F">Friday</option>
+      <option value="Sa">Saturday</option>
+      <option value="Su">Sunday</option>
+</select>
+
+	<input type="submit" />
+	</form>
+</html>

@@ -1,0 +1,217 @@
+<html><head><title>Do Go Deals - Home</title>
+    <meta name="description" content="Do Go Deals - Allston, MA. GPS events/specials/deals. Restaurants">
+    <meta name="keywords" content="Do Go Deals, Restaurants, Allston, MA">
+       <link rel="stylesheet" type="text/css" href="http://dogodeals.vpweb.com/vp/css/customersites/common_published.css">
+         <link href="http://www.dogodeals.com/gotime.css?1239854968" media="handheld,screen" rel="stylesheet" type="text/css" />
+<script src="gap.js" type="application/x-javascript"></script>
+    <script type="text/javascript"><!--
+    window.onload = function () { window.scrollTo(0, 1); };
+    --></script>
+
+    <!--[if IE]>
+    <style>
+      ul
+      {
+          margin-left:1.5em;
+          padding-left:0;
+      }
+      ol
+      {
+          margin-left:2em;
+          padding-left:0;
+      }
+      @media print
+      {
+          img.userContentCellBackground { display: none; }
+      }
+      </style>
+    <![endif]--></head>
+    <div class="header section">
+    <img src="/img/dogodeals.png" height="184" width="284" />
+    <h1>Specials</h1>
+    </div>
+	 <script src="http://maps.google.com/maps?file=api&v=2&key=ABQIAAAAGroKzMDAOLW_ewmTRNc1fBS2VAnPP1hW_vHnyD0DbvSS6AimCBSnumu0UO7Klw5m-5CeuBTRZv_NNA"
+	            type="text/javascript"></script>
+
+	    <script type="text/javascript">
+	    var map;
+	    var geocoder;
+
+	    function load() { 
+	  if (GBrowserIsCompatible()) {
+	        geocoder = new GClientGeocoder();
+	        
+			}
+	 initGap = function() {
+          Device.init();    
+          Device.Location.callback = updateLocation;
+      }
+ 
+     updateLocation = function(lat,lon) {
+          document.getElementById('lat').innerHTML = lat;
+          document.getElementById('lon').innerHTML = lon;
+     }
+	    }
+		function drawDow() {
+		//var weekday = new Array();
+		var weekdayt = new getDay_l();
+
+	//	var weekdayv = new Array();
+		var weekdayv = new getDay_ab();
+		var d = new Date();
+		var dees = d.getDay();
+
+
+			var combLay = document.getElementById('dow');
+			var buffet = "<b>Day: </b><select id='daySelect'>";
+
+
+			for (var i=0; i<7; i++)
+			{
+				if (i==dees) {
+					buffet += "<option value="+'"'+ weekdayv[i] + '" selected>'+ weekdayt[i] + '</option>';
+					}
+					else
+						buffet += "<option value="+'"'+ weekdayv[i] + '">'+ weekdayt[i] + '</option>';
+			}
+	buffet += '</select>';
+	document.getElementById('dow').innerHTML = buffet;
+		}
+	   function searchLocations() {
+	         searchLocationsNear(lat,lon);
+	    	   }
+
+	   function searchLocationsNear(lat,lon) {
+	     
+var radius = document.getElementById('radiusSelect').value;
+
+		var day = document.getElementById('daySelect').value;
+
+	     var searchUrl = 'phpsqlsearch_genxml.php?lat=' + lat + '&lng=' + lon + '&radius=' + radius + '&day=' + day;
+  GDownloadUrl(searchUrl, function(data) {
+	       var xml = GXml.parse(data);
+	       var markers = xml.documentElement.getElementsByTagName('marker');
+	
+
+	       var sidebar = document.getElementById('sidebar');
+	       sidebar.innerHTML = '';
+	       if (markers.length == 0) {
+	         sidebar.innerHTML = 'No results found.';
+	     	         return;
+	       }
+	       for (var i = 0; i < markers.length; i++) {
+	         var name = markers[i].getAttribute('Restaurant_Name');
+	         var address = markers[i].getAttribute('Restaurant_Address');
+			 var rcat = markers[i].getAttribute('Restaurant_Category');
+			 var rdesc = markers[i].getAttribute('Restaurant_Description');
+			 var rphone = markers[i].getAttribute('Restaurant_Phone');
+			 var dow =  markers[i].getAttribute('Event_Day');
+			var etype = markers[i].getAttribute('Event_Type');
+			var estart = markers[i].getAttribute('Event_Start');
+			var eend = markers[i].getAttribute('Event_End');
+			var ecat = markers[i].getAttribute('Event_Category');
+			var distance = parseFloat(markers[i].getAttribute('Distance'));
+	        
+	         var marker = createMarker(name, address, etype, dow, rdesc, rphone);
+	        // document.getElementById('map').innerhtml=marker;
+	         
+			 var sidebarEntry = createSidebarEntry(marker, name, address, distance, dow, etype, estart, eend);
+	         sidebar.appendChild(sidebarEntry);
+			 
+	         
+	       }
+	       
+	     });
+	   }
+
+	    function createMarker(name, address, etype, dow, rdesc, rphone) {
+	     	      var marker = '<b>' + name + '</b> <br/>' + address + '<br/>' + etype + " - " + dow + '<br/>' + rdesc + '<br/>' + "Phone: " + rphone;
+	    
+	      return marker;
+	    }
+
+	    function createSidebarEntry(marker, name, address, distance, dow, etype, estart, eend) {
+	      var div = document.createElement('div');
+		  var html = '<dl><dt><p class="name"><img src="/img/lildog.jpg" height="56" width="56" alt="DogO Deals"/></dt><b><font color="white"><dd>' + name + '</b> (' + distance.toFixed(1) + ')<br/>' + address + '<br/>' + etype + '<br/> ' + estart + '-' + eend + '<p style="clear: both; height: 5px;">&nbsp;</p></dd></dl>';
+	      div.innerHTML = html;
+	      div.style.cursor = 'pointer';
+		  div.style.marginBottom = '5px'; 
+	      return div;
+		  
+	    }
+	    //]]>
+	function getDay_ab() { 
+		var d=new Date();
+		var weekdayv=new Array(7);
+		weekdayv[0]="Sun";
+		weekdayv[1]="Mon";
+		weekdayv[2]="Tue";
+		weekdayv[3]="Wed";
+		weekdayv[4]="Thu";
+		weekdayv[5]="Fri";
+		weekdayv[6]="Sat";
+	//	document.write(weekday[d.getDay()]);
+		return weekdayv;
+	}
+	function getDay_l() { 
+		var d=new Date();
+		var weekday=new Array(7);
+		weekday[0]="Sunday";
+		weekday[1]="Monday";
+		weekday[2]="Tuesday";
+		weekday[3]="Wednesday";
+		weekday[4]="Thursday";
+		weekday[5]="Friday";
+		weekday[6]="Saturday";
+	return weekday;
+	//	document.write(weekday[dater.getDay()]);
+	}
+	  </script>
+	
+  <body onLoad="drawDow();load();" onUnload="GUnload();">
+
+<div id="addressInut" style="display:inline"><b>Address:
+</b><input id="addressInput" type="text" /></div>
+<div id="dow" style="display:inline"></div>
+<div id="radiusect" style="display:inline"><b>Miles: </b><select id="radiusSelect"> <option value="1">1</option> <option value="2">2</option> <option value="5" selected>5</option> <option value="10">10</option> <option value="25">25</option> <option value="100">100</option></select></div>
+<!-- 	Day of Week: <select id="daySelect"> <option value=getDay_ab() selected> <option value="M">Monday</option> <option value="Tu">Tuesday</option> <option value="W">Wednesday</option> <option value="Th">Thursday</option> <option value="F">Friday</option> <option value="Sa">Saturday</option> <option value="Su">Sunday</option> </select> !-->
+					    <input onClick="searchLocations()" value="Search For Deals!" type="button" /> <br /> <br />
+<div style="width:800px; font-family:Arial, 
+					sans-serif; font-size:11px; border:1px solid black">
+<table>
+</table>
+<table border="1">
+<tbody>
+<tr id="cm_mapTR">
+<td valign="top" width="800">
+<div id="sidebar" style="overflow: auto; height: 500px; font-size: 11px; color: #000"></div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+</tr>
+<!-- 
+<tr height="67">
+<td colspan="3">
+<div style="position: relative;" mce_style="position: relative;"><img src="http://dogodeals.vpweb.com/bg-4a.png?u=633715869371875000" mce_src="http://dogodeals.vpweb.com/bg-4a.png?u=633715869371875000" width="196" height="94" galleryimg="no" style="position: absolute; top: -94px; left: 0px" mce_style="position: absolute; top: -94px; left: 0px"><img src="http://dogodeals.vpweb.com/bg-4b.png?u=633715869371875000" mce_src="http://dogodeals.vpweb.com/bg-4b.png?u=633715869371875000" width="536" height="94" galleryimg="no" style="position: absolute; top: -94px; left: 196px" mce_style="position: absolute; top: -94px; left: 196px"><img src="http://dogodeals.vpweb.com/bg-4c.png?u=633715869371875000" mce_src="http://dogodeals.vpweb.com/bg-4c.png?u=633715869371875000" width="44" height="94" galleryimg="no" style="position: absolute; top: -94px; left: 732px" mce_style="position: absolute; top: -94px; left: 732px"><img src="http://dogodeals.vpweb.com/bg-5.png?u=633715869371875000" mce_src="http://dogodeals.vpweb.com/bg-5.png?u=633715869371875000" width="776" height="67" galleryimg="no"></div>
+</td>
+</tr>
+!-->
+</tbody>
+</table>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<a href="#" onclick="Device.Location.init();" >Click here to get the location.</a>
+</body>
+  </html>

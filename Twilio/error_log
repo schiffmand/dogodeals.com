@@ -1,0 +1,28 @@
+[26-Sep-2011 23:50:37] PHP Warning:  require(Services/Twilio.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/dogodea1/public_html/Twilio/sms-rest.php on line 4
+[26-Sep-2011 23:50:37] PHP Warning:  require(Services/Twilio.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/dogodea1/public_html/Twilio/sms-rest.php on line 4
+[26-Sep-2011 23:50:37] PHP Fatal error:  require() [<a href='function.require'>function.require</a>]: Failed opening required 'Services/Twilio.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/dogodea1/public_html/Twilio/sms-rest.php on line 4
+[27-Sep-2011 18:43:51] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Twilio/dan_add_chat.php on line 8
+[27-Sep-2011 18:46:41] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Twilio/dan_add_chat.php on line 8
+[27-Sep-2011 18:47:17] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Twilio/dan_add_chat.php on line 8
+[27-Sep-2011 18:48:33] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Twilio/dan_add_chat.php on line 22
+[27-Sep-2011 18:48:35] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Twilio/dan_add_chat.php on line 22
+[27-Sep-2011 18:48:37] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Twilio/dan_add_chat.php on line 22
+[27-Sep-2011 18:48:38] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Twilio/dan_add_chat.php on line 22
+[27-Sep-2011 18:48:47] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Twilio/dan_add_chat.php on line 22
+[27-Sep-2011 18:48:50] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Twilio/dan_add_chat.php on line 22
+[27-Sep-2011 18:49:05] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Twilio/dan_add_chat.php on line 22
+[27-Sep-2011 18:50:36] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Twilio/dan_add_chat.php on line 22
+[27-Sep-2011 18:50:38] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Twilio/dan_add_chat.php on line 22
+[27-Sep-2011 18:50:39] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Twilio/dan_add_chat.php on line 22
+[27-Sep-2011 18:51:32] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Twilio/dan_add_chat.php on line 21
+[27-Sep-2011 18:51:34] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Twilio/dan_add_chat.php on line 21
+[27-Sep-2011 18:53:09] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Twilio/dan_add_chat.php on line 21
+[27-Sep-2011 18:54:21] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Twilio/dan_add_chat.php on line 21
+[27-Sep-2011 18:54:22] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Twilio/dan_add_chat.php on line 21
+[27-Sep-2011 18:54:24] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Twilio/dan_add_chat.php on line 21
+[27-Sep-2011 18:54:24] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Twilio/dan_add_chat.php on line 21
+[27-Sep-2011 18:54:24] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Twilio/dan_add_chat.php on line 21
+[27-Sep-2011 18:54:25] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Twilio/dan_add_chat.php on line 21
+[27-Sep-2011 18:54:25] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Twilio/dan_add_chat.php on line 21
+[27-Sep-2011 18:54:41] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Twilio/dan_add_chat.php on line 21
+[27-Sep-2011 18:55:39] PHP Parse error:  syntax error, unexpected '}' in /home/dogodea1/public_html/Twilio/dan_add_chat.php on line 21

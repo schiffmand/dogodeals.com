@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>500 Error : Internal Server Error</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+</head>
+<frameset rows="120,*" frameborder="no" border="0" framespacing="0">
+	<frame src="http://www.justhost.com/error_docs/500.header.php">
+	<frame src="http://searchportal.information.com/?o_id=116648&domainname=referer_detect">
+</frameset>
+<noframes>
+	<body>
+		<h1><span>500: Internal Server Error</span></h1>
+		<p>The request was not completed. The server met an unexpected condition.</p>
+		<iframe src="http://searchportal.information.com/?o_id=116648&domainname=referer_detect" frameborder="0" height="600" scrolling="auto" width="100%" style="margin-top:25px;"></iframe>
+	</body>
+</noframes>
+</html>
